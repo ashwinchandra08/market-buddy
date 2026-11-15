@@ -50,4 +50,7 @@ say() {
 }
 
 framework_stop()  { /etc/init.d/framework stop 2>/dev/null || stop framework 2>/dev/null; }
-framework_start() { /etc/init.d/framework start 2>/dev/null || start framework 2>/dev/null; }
+framework_start() {
+  lipc-set-prop com.lab126.pillow disableEnablePillow enable 2>/dev/null
+  /etc/init.d/framework start 2>/dev/null || start framework 2>/dev/null
+}

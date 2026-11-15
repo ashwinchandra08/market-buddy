@@ -2,18 +2,29 @@
 # Main loop. Runs until $BASE/STOP exists.
 . "$(dirname "$0")/common.sh"
 rm -f "$BASE/STOP"
-log "=== dash start ==="
+trap '' HUP TERM
+log "=== dash start (pid $$) ==="
 
+# Fetch first, while the UI is still up, so a failure is visible in the log.
+wifi_up; sleep 5
+log "stopping framework"
 framework_stop
+log "framework stopped (rc=$?)"
 sleep 2
 lipc-set-prop com.lab126.powerd preventScreenSaver 1 2>/dev/null
-wifi_up
+# hide the status bar / close button that appears on touch
+lipc-set-prop com.lab126.pillow disableEnablePillow disable 2>/dev/null
+log "pillow disabled (rc=$?)"
 
 fails=0
+first=1
 while [ ! -f "$BASE/STOP" ]; do
   fetch_if_new; rc=$?
+  # the UI was just stopped, so the screen is blank: always paint on the first pass
+  if [ "$first" = 1 ] && [ "$rc" -eq 1 ]; then rc=0; fi
+  first=0
   case $rc in
-    0) log "new image"; paint; fails=0 ;;
+    0) log "painting image"; paint; fails=0 ;;
     1) fails=0 ;;
     *) fails=$((fails+1)); log "fetch failed ($fails)"; wifi_up
        if [ "$fails" -eq 12 ]; then say "OFFLINE - data may be stale"; fi ;;
