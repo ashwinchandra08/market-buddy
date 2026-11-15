@@ -11,7 +11,7 @@ for b in curl fbink; do
   if [ -f "$BASE/bin/$b" ]; then cp "$BASE/bin/$b" "$TMPBIN/$b" 2>/dev/null; chmod +x "$TMPBIN/$b" 2>/dev/null; fi
 done
 CURL="$TMPBIN/curl"; [ -x "$CURL" ] || CURL="$(command -v curl)"
-FBINK="$TMPBIN/fbink"; [ -x "$FBINK" ] || FBINK="$(command -v fbink)"
+FBINK="$TMPBIN/fbink"; [ -x "$FBINK" ] || FBINK="$(command -v fbink)"   # optional; empty => use built-in eips
 PNG="$STATE/dash.png"
 
 log() { echo "$(date '+%F %T') $*" >> "$LOG"; }
@@ -36,7 +36,18 @@ fetch_if_new() {
   return 0
 }
 
-paint() { "$FBINK" -q -c -f -g file="$PNG" ; }
+# Paint the PNG full-screen. Uses FBInk if present, otherwise the Kindle's built-in eips.
+paint() {
+  if [ -n "$FBINK" ] && [ -x "$FBINK" ]; then
+    "$FBINK" -q -c -f -g file="$PNG"
+  else
+    eips -c; eips -f -g "$PNG"
+  fi
+}
+# Print a short text line at the top-left of the screen.
+say() {
+  if [ -n "$FBINK" ] && [ -x "$FBINK" ]; then "$FBINK" -q -y 0 -x 0 "$1"; else eips 0 0 "$1"; fi
+}
 
 framework_stop()  { /etc/init.d/framework stop 2>/dev/null || stop framework 2>/dev/null; }
 framework_start() { /etc/init.d/framework start 2>/dev/null || start framework 2>/dev/null; }

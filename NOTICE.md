@@ -15,7 +15,7 @@ library. Yahoo's terms apply; the data may be delayed or inaccurate. **Nothing h
 ## Binaries you add yourself (not distributed in this repo)
 | Tool | License | Source |
 |---|---|---|
-| FBInk (`fbink`) | GPL-3.0 | https://github.com/NiLuJe/FBInk |
+| FBInk (`fbink`, optional) | GPL-3.0 | https://github.com/NiLuJe/FBInk |
 | static curl (`curl`) | curl license (MIT-like) | https://github.com/moparisthebest/static-curl |
 | CA bundle (`cacert.pem`) | MPL-2.0 (Mozilla data) | https://curl.se/docs/caextract.html |
 

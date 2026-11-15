@@ -16,7 +16,7 @@ while [ ! -f "$BASE/STOP" ]; do
     0) log "new image"; paint; fails=0 ;;
     1) fails=0 ;;
     *) fails=$((fails+1)); log "fetch failed ($fails)"; wifi_up
-       if [ "$fails" -eq 12 ]; then "$FBINK" -q -y 0 -x 0 "OFFLINE - data may be stale"; fi ;;
+       if [ "$fails" -eq 12 ]; then say "OFFLINE - data may be stale"; fi ;;
   esac
 
   # faster polling during India/US market windows (IST weekdays)

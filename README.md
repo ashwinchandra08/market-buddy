@@ -9,7 +9,7 @@ with a Pokémon whose mood follows the market – five moods from *very happy* t
 ```
 GitHub Actions (cron) ─ yfinance ─► mood score ─► Pillow (1072×1448 grayscale PNG) ─► GitHub Pages
                                                                                          │ HTTPS
-Kindle (plugged in) ◄─ KUAL script: curl meta.txt → curl dash.png → fbink paint ◄───────┘
+Kindle (plugged in) ◄─ KUAL script: curl meta.txt → curl dash.png → fbink or eips paint ◄───────┘
 ```
 
 Shows: Nifty 50, Sensex, Bank Nifty, S&P 500, Nasdaq, Dow (each with a *today* and a *5-day* sparkline),
@@ -45,7 +45,7 @@ Real data: `python -m src.main` (yfinance, needs internet).
 
 ### 3. Set up the Kindle
 See **[kindle/marketbuddy/README.md](kindle/marketbuddy/README.md)** – it lists the three files you must add
-yourself (`fbink`, `curl`, `cacert.pem`) and **how to exit back to the normal Kindle UI**.
+yourself (`curl` and `cacert.pem`; `fbink` is optional) and **how to exit back to the normal Kindle UI**.
 
 ## Configuration (`config.yaml`)
 Indices, macro strip, mood thresholds, and which Pokémon (PokeAPI ids) appear for each mood.
