@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "name": "Market Buddy",
+      "priority": 0,
+      "items": [
+        { "name": "1. Self-check (files, TLS, URL)",        "priority": 1, "action": "bin/selfcheck.sh",  "exitmenu": false },
+        { "name": "2. Test: paint once, then restore UI",   "priority": 2, "action": "bin/test_once.sh",  "exitmenu": true },
+        { "name": "3. START dashboard (hides Kindle UI)",   "priority": 3, "action": "bin/start.sh",      "exitmenu": true }
+      ]
+    }
+  ]
+}

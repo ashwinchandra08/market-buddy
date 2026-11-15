@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+site/
+sprites/
+.venv/
+
+# Kindle-side files you add yourself / runtime output (never commit)
+kindle/marketbuddy/bin/curl
+kindle/marketbuddy/bin/fbink
+kindle/marketbuddy/cacert.pem
+kindle/marketbuddy/state/
+kindle/marketbuddy/*.log
+kindle/marketbuddy/STOP

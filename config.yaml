@@ -1,0 +1,36 @@
+# ---------- Market Buddy configuration ----------
+timezone: Asia/Kolkata
+size: { width: 1072, height: 1448 }   # Kindle Paperwhite 3 (7th gen)
+
+mood:
+  india_symbol: "^NSEI"
+  us_symbol: "^GSPC"
+  weights: { india: 0.5, us: 0.5 }
+  # blended % change >= value -> that tier (checked top to bottom)
+  thresholds: { very_happy: 1.0, happy: 0.25, neutral: -0.25, worried: -1.0 }
+  # a volatility spike pushes the mood one tier worse
+  vol_symbols: { india: "^INDIAVIX", us: "^VIX" }
+  vol_spike_pct: 8.0
+
+indices:
+  - { name: "Nifty 50",   symbol: "^NSEI",    market: IN, dec: 2 }
+  - { name: "Sensex",     symbol: "^BSESN",   market: IN, dec: 2 }
+  - { name: "Bank Nifty", symbol: "^NSEBANK", market: IN, dec: 2 }
+  - { name: "S&P 500",    symbol: "^GSPC",    market: US, dec: 2 }
+  - { name: "Nasdaq",     symbol: "^IXIC",    market: US, dec: 2 }
+  - { name: "Dow",        symbol: "^DJI",     market: US, dec: 2 }
+
+macro:
+  - { name: "USD/INR",    symbol: "USDINR=X",  dec: 2 }
+  - { name: "Brent",      symbol: "BZ=F",      dec: 2, prefix: "$" }
+  - { name: "Gold",       symbol: "GC=F",      dec: 0, prefix: "$" }
+  - { name: "India VIX",  symbol: "^INDIAVIX", dec: 2 }
+  - { name: "US 10Y",     symbol: "^TNX",      dec: 2, suffix: "%" }
+
+# PokeAPI ids per mood; one is picked per day (stable within the day)
+pokemon:
+  very_happy: [25, 39, 35]     # Pikachu, Jigglypuff, Clefairy
+  happy:      [133, 1, 4]      # Eevee, Bulbasaur, Charmander
+  neutral:    [143, 132, 113]  # Snorlax, Ditto, Chansey
+  worried:    [54, 7, 79]      # Psyduck, Squirtle, Slowpoke
+  scary:      [94, 130, 150]   # Gengar, Gyarados, Mewtwo
