@@ -1,6 +1,6 @@
 # Market Buddy 📈🐾
 
-[![ci](https://github.com/YOUR_USER/market-buddy/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USER/market-buddy/actions/workflows/ci.yml)
+[![ci](https://github.com/ashwinchandra08/market-buddy/actions/workflows/ci.yml/badge.svg)](https://github.com/ashwinchandra08/market-buddy/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A daily **India + US market dashboard** for an e-ink Kindle (built for a jailbroken **Paperwhite 3, FW 5.16.2.1.1**),
